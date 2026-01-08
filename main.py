@@ -1,3 +1,7 @@
+"""
+Aplicativo Principal - Dashboard de Web Scraping
+Executa o scraping e inicia o dashboard
+"""
 
 import schedule
 import time
@@ -9,16 +13,16 @@ from dashboard import create_dashboard
 
 def run_scraping():
     """Executa o processo de scraping"""
-    print("Starting scraping...")
+    print("Iniciando scraping...")
     scraper = CryptoScraper()
     data = scraper.fetch_crypto_data()
 
     if data:
         db = Database()
         db.save_data(data)
-        print(f"✓ {len(data)} Records saved in the database")
+        print(f"✓ {len(data)} registros salvos no banco de dados")
     else:
-        print("✗ No data collected.")
+        print("✗ Nenhum dado coletado")
 
 
 def schedule_scraping():
@@ -37,7 +41,7 @@ def schedule_scraping():
 def main():
     """Função principal"""
     print("=" * 60)
-    print("Web Scraping Dashboard - Criptocoins")
+    print("Dashboard de Web Scraping - Criptomoedas")
     print("=" * 60)
 
     # Inicia scraping em thread separada
@@ -45,15 +49,18 @@ def main():
     scraping_thread.start()
 
     # Inicia o dashboard
-    print("\nStarting panel...")
+    print("\nIniciando dashboard...")
     app = create_dashboard()
 
     print("\n" + "=" * 60)
-    print("Dashboard available at: http://127.0.0.1:8050")
-    print("Press Ctrl+C to quit.")
+    print("Dashboard disponível em: http://127.0.0.1:8050")
+    print("Pressione Ctrl+C para encerrar")
     print("=" * 60 + "\n")
 
-    app.run_server(debug=False, host='127.0.0.1', port=8050)
+    # Para deploy em produção, usa PORT do ambiente
+    import os
+    port = int(os.environ.get('PORT', 8050))
+    app.run(debug=False, host='0.0.0.0', port=port)
 
 
 if __name__ == "__main__":
