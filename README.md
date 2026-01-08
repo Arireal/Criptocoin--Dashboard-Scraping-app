@@ -1,6 +1,6 @@
 # 📊 Crypto Dashboard - Web Scraping & Analytics Platform
 
-A real-time cryptocurrency monitoring dashboard built with Python, featuring automated web scraping, SQL database management, and interactive data visualization.
+A real-time cryptocurrency monitoring dashboard built with Python, featuring automated web scraping, SQL database management, and interactive data visualization. Deployed on Render.
 
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
 ![Dash](https://img.shields.io/badge/dash-2.14.2-brightgreen.svg)
